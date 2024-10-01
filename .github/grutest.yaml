@@ -5,7 +5,7 @@ global:
 pipeline:
   runTest:
     exec:
-      - npx vitest {{testFilePath}}
+      - npx vitest run {{testFilePath}}
     post:
       # 用户在配置的时候，是否也可能会遇到这个坑
       - npx tsc --noEmit --pretty

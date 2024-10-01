@@ -1,0 +1,16 @@
+version: "0.1"
+global:
+  setup:
+    - pnpm install
+pipeline:
+  runTest:
+    exec:
+      - npx vitest {{testFilePath}}
+    post:
+      # 用户在配置的时候，是否也可能会遇到这个坑
+      - npx tsc --noEmit --pretty
+settings:
+  exportFunctionOrClass: allow
+  testPlacementStrategies:
+    - type: co-located
+      testFilePattern: "{{sourceFileName}}.spec.ts"
